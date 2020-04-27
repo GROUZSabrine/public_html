@@ -1,0 +1,22 @@
+******************************************************************************************************************************* <br>
+<h1> Sc&eacute;nario 1 : All-in-One + VM ubuntu server pr&ecirc;te </h1> <br>
+******************************************************************************************************************************* <br>
+<br>
+------------------------------------------------------- <br>
+<b> Comment cloner votre projet? </b> <br>
+------------------------------------------------------- <br>
+<br>
+-Cr&eacute;ez une VM ubuntu server 18.04 <br>
+-Cloner VM ubuntu server 18.04:&nbsp; <i> clone li&eacute;</i> <br>
+-Configurer le clone de VM ubuntu server 18.04:&nbsp;<i> R&eacute;seau -> carte1 : NAT -> carte2 : R&eacute;seau priv&eacute; h&ocirc;te</i> <br>
+<br>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+<b> Comment lancer le scripte principale dans ma VM qui permet de d&eacute;ployer votre application (Apache+PHP+MySQL+Application)? </b>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+<br>
+-Installez le serveur web Apache:&nbsp; <i> sudo apt install apache2 </i> <br>
+-Installez le module PHP:&nbsp; <i> sudo apt install libapache2-mod-php </i> <br>
+-Installez le SGBD MySQL:&nbsp; <i> sudo apt install mysql-server </i> <br>
+-Cr&eacute;ez une BD relative &agrave; votre projet:&nbsp; <i> sudo mysql create database db_app; </i> <br><br>
+-> Cr&eacute;ation d&acute;un utilisateur ayant tous les droits sur cette BD:&nbsp; <i> create user user_app identified by 'abc';  grant all on db_app.* to user_app@'%'; </i> <br>
+-> Votre application se connectera &agrave; la BD avec les param&egrave;tres de cet utilisateur:&nbsp; <i> mysql -u user_app -p -D db_app -h 192.168.56.20 -P 3306 </i> <br>
