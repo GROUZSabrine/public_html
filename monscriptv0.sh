@@ -1,5 +1,5 @@
 #!/bin/bash
-# monscript.sh
+# monscriptv0.sh
 
 ####################################################
 # Partie 1 : Application LAMP All-in-One
