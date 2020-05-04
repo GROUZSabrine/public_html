@@ -52,7 +52,7 @@ echo "<html>
 <?php
 \$bdd = new PDO('mysql:host=192.168.56.20;dbname=db_proj', 'user_proj', 'abc');
 \$reponse = \$bdd ->query('SELECT * FROM produit'); 
-while (\$donnees = \$reponse ->fetch()){ ?><tr><td><?php echo \$donnees['nom']; ?></td><td><?php echo \$donnees['prix']; ?></td><td><?php echo \$donnees['qte']; ?></td><td><a href='produit.php?edit=<?php echo \$donnees['prod_id']; ?>' >Modifier</a></td><td><a href='produit.php?del=<?php echo \$donnees['prod_id']; ?>'>Supprimer</a></td></tr>
+while (\$donnees = \$reponse ->fetch()){ ?><tr><td><?php echo \$donnees['nom']; ?></td><td><?php echo \$donnees['prix']; ?></td><td><?php echo \$donnees['qte']; ?></td><td><a href='produit.php?edit=<?php echo \$donnees['prod_id']; ?>' >Modifier</a>&nbsp;&nbsp;<a href='produit.php?del=<?php echo \$donnees['prod_id']; ?>'>Supprimer</a></td></tr>
 <?php } ?>
 </table></body></html>" > test.php
 sudo touch produit.php
@@ -71,7 +71,7 @@ echo 'Connection error: ' . \$exception->getMessage();
 
 if (isset(\$_GET['edit']) || isset(\$_GET['del'])){
 \$id = \$_GET['edit'];
-\$id1 = $_GET['del'];
+\$id1 = \$_GET['del'];
 \$sql = 'SELECT * FROM produit WHERE prod_id=:id or prod_id=:id1';
 \$query = \$connection->prepare(\$sql);
 \$query->execute(array(':id' => \$id,':id1' => \$id1));
@@ -145,9 +145,9 @@ function modifier(\$id,\$nom, \$prix, \$qte){
 global \$connection;
 \$query = 'UPDATE produit SET nom=:nom, prix=:prix, qte=:qte WHERE prod_id=:id';
 \$callToDb = \$connection->prepare(\$query);
-\$id = $_POST['id'];
-\$nom=htmlspecialchars(strip_tags($nom));
-\$prix=htmlspecialchars(strip_tags($prix));
+\$id = \$_POST['id'];
+\$nom=htmlspecialchars(strip_tags(\$nom));
+\$prix=htmlspecialchars(strip_tags(\$prix));
 \$callToDb->bindParam(':id',\$id);
 \$callToDb->bindParam(':nom',\$nom);
 \$callToDb->bindParam(':prix',\$prix);
