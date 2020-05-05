@@ -36,11 +36,13 @@ echo "CREATE TABLE IF NOT EXISTS produit (
 INSERT INTO produit (nom, prix, qte) VALUES ('Produit1', '2,500', 20),('Produit2', '5,500', 50),('Produit3','1,500', 10); USE db_proj; show databases; show tables; show columns in produit; SELECT * FROM produit;" | mysql -u user_proj -p -D db_proj -h 192.168.56.20 -P 3306 
 
 echo "Créez et hébergez quelles que pages PHP manipulant votre BD"
-cd /var/www/html/
-sudo touch index.html
+touch index.html
 echo "<html>
 <head><title>Ceci est une page index</title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' /></head>
 <body><h2>Page index </h2><a href='test.php'>Page Test</a></body></html>" > index.html
+sudo mv /var/www/html/index.html /var/www/html/index.html.origin
+sudo cp ./index.html /var/www/html/
+cd /var/www/html/
 sudo touch test.php
 sudo chmod 777 test.php
 echo "<html>
